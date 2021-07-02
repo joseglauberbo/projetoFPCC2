@@ -1,0 +1,195 @@
+---
+title: "Projeto - replicação"
+output:
+    html_document:
+    df_print: paged
+theme: sandstone
+---
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+
+library(boot)
+library(broom)
+
+knitr::opts_chunk$set(tidy = FALSE,
+                      fig.width = 6,
+                      fig.height = 5)
+
+```
+
+```{r read}
+falsosPositivosAdicionados3AlgoritmosCenariosDeMerge = read_csv(here::here("~/labs-fpcc2/projeto/falsosPositivosAdicionados3AlgoritmosCenariosDeMerge.csv"), 
+                 col_types = "cdcc")
+
+```
+
+```{r}
+plot_ics = function(d) {
+    d %>%
+        ggplot(aes(
+            ymin = low,
+            y = mid,
+            ymax = high,
+            x = metodo
+        )) +
+        geom_linerange() +
+        geom_point(color = "coral", size = 3) +
+        scale_y_continuous(limits = c(-1, 1)) +
+        labs(x = "", y = "Intervalos de confiança") +
+        coord_flip()
+}
+```
+
+```{r}
+comparacao = falsosPositivosAdicionados3AlgoritmosCenariosDeMerge %>% 
+    filter(algoritmo %in% c("kdiff3", "jsFSTMergeV1"))
+
+theta <- function(d, i) {
+    agrupado = d %>% 
+        slice(i) %>% 
+        group_by(algoritmo) %>% 
+        summarise(totalConflitos = mean(conflitos))
+    k = agrupado %>% filter(algoritmo == "kdiff3") %>% pull(totalConflitos)
+    j = agrupado %>% filter(algoritmo == "jsFSTMergeV1") %>% pull(totalConflitos)
+    k - j
+}
+
+theta(comparacao, i = 1:NROW(comparacao))
+```
+
+```{r}
+ci <- boot(data = comparacao,
+           statistic = theta,
+           R = 2000) %>%
+    tidy(conf.level = .95,
+         conf.method = "bca",
+         conf.int = TRUE)
+ci
+```
+```{r}
+ci %>% 
+  ggplot(aes(
+            ymin = conf.low,
+            y = statistic,
+            ymax = conf.high,
+            x = "jsFSTMerge v1 - Kdiff3"
+        )) +
+        geom_linerange() +
+        geom_point(color = "coral", size = 2) +
+        scale_y_continuous(limits = c(-1, 1)) +
+        labs(x = "", y = "Diferença entre as médias de adição de falsos positivos em cenários de merge") +
+        coord_flip()
+```
+
+```{r}
+comparacao2 = falsosPositivosAdicionados3AlgoritmosCenariosDeMerge %>% 
+    filter(algoritmo %in% c("kdiff3", "jsFSTMergeV2"))
+
+theta <- function(d, i) {
+    agrupado = d %>% 
+        slice(i) %>% 
+        group_by(algoritmo) %>% 
+        summarise(totalConflitos = mean(conflitos))
+    k = agrupado %>% filter(algoritmo == "kdiff3") %>% pull(totalConflitos)
+    j = agrupado %>% filter(algoritmo == "jsFSTMergeV2") %>% pull(totalConflitos)
+    k - j
+}
+
+theta(comparacao2, i = 1:NROW(comparacao2))
+```
+
+```{r}
+ci2 <- boot(data = comparacao2,
+           statistic = theta,
+           R = 2000) %>%
+    tidy(conf.level = .95,
+         conf.method = "bca",
+         conf.int = TRUE)
+ci2
+```
+
+```{r}
+ci2 %>% 
+  ggplot(aes(
+            ymin = conf.low,
+            y = statistic,
+            ymax = conf.high,
+            x = "jsFSTMerge v1 - Kdiff3"
+        )) +
+        geom_linerange() +
+        geom_point(color = "coral", size = 2) +
+        scale_y_continuous(limits = c(-1, 1)) +
+        labs(x = "", y = "Diferença entre as médias de adição de falsos positivos em cenários de merge") +
+        coord_flip()
+```
+
+```{r}
+comparacao3 = falsosPositivosAdicionados3AlgoritmosCenariosDeMerge %>% 
+    filter(algoritmo %in% c("jsFSTMergeV1", "jsFSTMergeV2"))
+
+theta <- function(d, i) {
+    agrupado = d %>% 
+        slice(i) %>% 
+        group_by(algoritmo) %>% 
+        summarise(totalConflitos = mean(conflitos))
+    k = agrupado %>% filter(algoritmo == "jsFSTMergeV1") %>% pull(totalConflitos)
+    j = agrupado %>% filter(algoritmo == "jsFSTMergeV2") %>% pull(totalConflitos)
+    k - j
+}
+
+theta(comparacao3, i = 1:NROW(comparacao3))
+```
+
+```{r}
+ci3 <- boot(data = comparacao3,
+           statistic = theta,
+           R = 2000) %>%
+    tidy(conf.level = .95,
+         conf.method = "bca",
+         conf.int = TRUE)
+ci3
+```
+
+```{r}
+ci3 %>% 
+  ggplot(aes(
+            ymin = conf.low,
+            y = statistic,
+            ymax = conf.high,
+            x = "jsFSTMerge v1 - Kdiff3"
+        )) +
+        geom_linerange() +
+        geom_point(color = "coral", size = 2) +
+        scale_y_continuous(limits = c(-1, 1)) +
+        labs(x = "", y = "Diferença entre as médias de adição de falsos positivos em cenários de merge") +
+        coord_flip()
+```
+
+```{r}
+tribble(
+    ~metodo, ~low, ~mid, ~high, 
+    "C1 (kdiff3 - jsFSTMerge v1)", -0.2710884, 0.14, 0.6601403, 
+    "C2 (kdiff3 - jsFSTMerge v2)", 0.1424986, 0.46, 0.9198245,
+    "C3 (jsFSTMerge v1 - jsFSTMerge v2)", 0.08116555, 0.32, 0.6754751) %>%
+    plot_ics()
+```
+```{r}
+falsosPositivosAdicionados3AlgoritmosCenariosDeMerge %>%
+  ggplot(aes(y = conflitos, x = algoritmo, fill=algoritmo)) + 
+  geom_boxplot() + 
+  theme(legend.position = "none") +
+  ggtitle("Quantidade de falsos positivos adicionados em relação à cenários de merge") +
+  labs(y = "Falsos positivos", x = "Algoritmo")
+```
+
+```{r}
+falsosPositivosAdicionados3AlgoritmosCenariosDeMerge %>%
+  ggplot(aes(y = conflitos, x = cenario, fill=cenario)) + 
+  geom_boxplot() + 
+  theme(legend.position = "none") +
+  ggtitle("Quantidade de falsos positivos adicionados em relação à cenários de merge") +
+  labs(y = "Falsos positivos", x = "Tipo de merge")
+```

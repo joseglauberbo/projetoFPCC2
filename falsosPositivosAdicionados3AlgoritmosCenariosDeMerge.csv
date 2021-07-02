@@ -1,0 +1,151 @@
+projeto,conflitos,cenario,algoritmo
+Ace,1,nao estruturado,kdiff3
+AngularJS,0,nao estruturado,kdiff3
+Async,2,nao estruturado,kdiff3
+BitcoinJS,0,nao estruturado,kdiff3
+Bluebird,0,nao estruturado,kdiff3
+Bower,0,nao estruturado,kdiff3
+Bowser,0,nao estruturado,kdiff3
+Brackets,0,nao estruturado,kdiff3
+Chance,0,nao estruturado,kdiff3
+d3,0,nao estruturado,kdiff3
+director,0,nao estruturado,kdiff3
+Dox,0,nao estruturado,kdiff3
+faker.js,5,nao estruturado,kdiff3
+fetch,0,nao estruturado,kdiff3
+Flux,0,nao estruturado,kdiff3
+GitBook,0,nao estruturado,kdiff3
+i18next,1,nao estruturado,kdiff3
+impress.js,1,nao estruturado,kdiff3
+Intro.js,0,nao estruturado,kdiff3
+Istanbul,0,nao estruturado,kdiff3
+Jasmine,0,nao estruturado,kdiff3
+jQuery,1,nao estruturado,kdiff3
+jquery-pjax,0,nao estruturado,kdiff3
+JSHint,0,nao estruturado,kdiff3
+Konva,0,nao estruturado,kdiff3
+Less.js,3,nao estruturado,kdiff3
+Mocha,0,nao estruturado,kdiff3
+Mousetrap,0,nao estruturado,kdiff3
+mustache.js,0,nao estruturado,kdiff3
+Nightmare,0,nao estruturado,kdiff3
+node_redis,1,nao estruturado,kdiff3
+node-restify,1,nao estruturado,kdiff3
+numbers.js,0,nao estruturado,kdiff3
+page.js,0,nao estruturado,kdiff3
+Paper.js,1,nao estruturado,kdiff3
+Phaser,0,nao estruturado,kdiff3
+PM2,0,nao estruturado,kdiff3
+Pug,0,nao estruturado,kdiff3
+Q,0,nao estruturado,kdiff3
+Request,0,nao estruturado,kdiff3
+RequireJS,2,nao estruturado,kdiff3
+reveal.js,6,nao estruturado,kdiff3
+socket.io,0,nao estruturado,kdiff3
+StatsD,4,nao estruturado,kdiff3
+Stylus,1,nao estruturado,kdiff3
+three.js,0,nao estruturado,kdiff3
+Underscore.js,0,nao estruturado,kdiff3
+WebTorrent,0,nao estruturado,kdiff3
+whistle,0,nao estruturado,kdiff3
+Zepto.js,0,nao estruturado,kdiff3
+Ace,0,semiestruturado,jsFSTMergeV1
+AngularJS,0,semiestruturado,jsFSTMergeV1
+Async,0,semiestruturado,jsFSTMergeV1
+BitcoinJS,1,semiestruturado,jsFSTMergeV1
+Bluebird,0,semiestruturado,jsFSTMergeV1
+Bower,0,semiestruturado,jsFSTMergeV1
+Bowser,0,semiestruturado,jsFSTMergeV1
+Brackets,0,semiestruturado,jsFSTMergeV1
+Chance,0,semiestruturado,jsFSTMergeV1
+d3,0,semiestruturado,jsFSTMergeV1
+director,2,semiestruturado,jsFSTMergeV1
+Dox,0,semiestruturado,jsFSTMergeV1
+faker.js,0,semiestruturado,jsFSTMergeV1
+fetch,0,semiestruturado,jsFSTMergeV1
+Flux,0,semiestruturado,jsFSTMergeV1
+GitBook,1,semiestruturado,jsFSTMergeV1
+i18next,0,semiestruturado,jsFSTMergeV1
+impress.js,0,semiestruturado,jsFSTMergeV1
+Intro.js,0,semiestruturado,jsFSTMergeV1
+Istanbul,0,semiestruturado,jsFSTMergeV1
+Jasmine,0,semiestruturado,jsFSTMergeV1
+jQuery,3,semiestruturado,jsFSTMergeV1
+jquery-pjax,0,semiestruturado,jsFSTMergeV1
+JSHint,1,semiestruturado,jsFSTMergeV1
+Konva,0,semiestruturado,jsFSTMergeV1
+Less.js,3,semiestruturado,jsFSTMergeV1
+Mocha,0,semiestruturado,jsFSTMergeV1
+Mousetrap,0,semiestruturado,jsFSTMergeV1
+mustache.js,0,semiestruturado,jsFSTMergeV1
+Nightmare,1,semiestruturado,jsFSTMergeV1
+node_redis,4,semiestruturado,jsFSTMergeV1
+node-restify,1,semiestruturado,jsFSTMergeV1
+numbers.js,0,semiestruturado,jsFSTMergeV1
+page.js,3,semiestruturado,jsFSTMergeV1
+Paper.js,0,semiestruturado,jsFSTMergeV1
+Phaser,0,semiestruturado,jsFSTMergeV1
+PM2,1,semiestruturado,jsFSTMergeV1
+Pug,0,semiestruturado,jsFSTMergeV1
+Q,0,semiestruturado,jsFSTMergeV1
+Request,1,semiestruturado,jsFSTMergeV1
+RequireJS,0,semiestruturado,jsFSTMergeV1
+reveal.js,0,semiestruturado,jsFSTMergeV1
+socket.io,0,semiestruturado,jsFSTMergeV1
+StatsD,0,semiestruturado,jsFSTMergeV1
+Stylus,0,semiestruturado,jsFSTMergeV1
+three.js,0,semiestruturado,jsFSTMergeV1
+Underscore.js,0,semiestruturado,jsFSTMergeV1
+WebTorrent,1,semiestruturado,jsFSTMergeV1
+whistle,0,semiestruturado,jsFSTMergeV1
+Zepto.js,0,semiestruturado,jsFSTMergeV1
+Ace,0,semiestruturado,jsFSTMergeV2
+AngularJS,0,semiestruturado,jsFSTMergeV2
+Async,0,semiestruturado,jsFSTMergeV2
+BitcoinJS,1,semiestruturado,jsFSTMergeV2
+Bluebird,0,semiestruturado,jsFSTMergeV2
+Bower,0,semiestruturado,jsFSTMergeV2
+Bowser,0,semiestruturado,jsFSTMergeV2
+Brackets,0,semiestruturado,jsFSTMergeV2
+Chance,0,semiestruturado,jsFSTMergeV2
+d3,0,semiestruturado,jsFSTMergeV2
+director,0,semiestruturado,jsFSTMergeV2
+Dox,0,semiestruturado,jsFSTMergeV2
+faker.js,0,semiestruturado,jsFSTMergeV2
+fetch,0,semiestruturado,jsFSTMergeV2
+Flux,0,semiestruturado,jsFSTMergeV2
+GitBook,0,semiestruturado,jsFSTMergeV2
+i18next,0,semiestruturado,jsFSTMergeV2
+impress.js,0,semiestruturado,jsFSTMergeV2
+Intro.js,0,semiestruturado,jsFSTMergeV2
+Istanbul,0,semiestruturado,jsFSTMergeV2
+Jasmine,0,semiestruturado,jsFSTMergeV2
+jQuery,1,semiestruturado,jsFSTMergeV2
+jquery-pjax,0,semiestruturado,jsFSTMergeV2
+JSHint,0,semiestruturado,jsFSTMergeV2
+Konva,0,semiestruturado,jsFSTMergeV2
+Less.js,1,semiestruturado,jsFSTMergeV2
+Mocha,0,semiestruturado,jsFSTMergeV2
+Mousetrap,0,semiestruturado,jsFSTMergeV2
+mustache.js,0,semiestruturado,jsFSTMergeV2
+Nightmare,0,semiestruturado,jsFSTMergeV2
+node_redis,0,semiestruturado,jsFSTMergeV2
+node-restify,1,semiestruturado,jsFSTMergeV2
+numbers.js,0,semiestruturado,jsFSTMergeV2
+page.js,2,semiestruturado,jsFSTMergeV2
+Paper.js,0,semiestruturado,jsFSTMergeV2
+Phaser,0,semiestruturado,jsFSTMergeV2
+PM2,0,semiestruturado,jsFSTMergeV2
+Pug,0,semiestruturado,jsFSTMergeV2
+Q,0,semiestruturado,jsFSTMergeV2
+Request,1,semiestruturado,jsFSTMergeV2
+RequireJS,0,semiestruturado,jsFSTMergeV2
+reveal.js,0,semiestruturado,jsFSTMergeV2
+socket.io,0,semiestruturado,jsFSTMergeV2
+StatsD,0,semiestruturado,jsFSTMergeV2
+Stylus,0,semiestruturado,jsFSTMergeV2
+three.js,0,semiestruturado,jsFSTMergeV2
+Underscore.js,0,semiestruturado,jsFSTMergeV2
+WebTorrent,0,semiestruturado,jsFSTMergeV2
+whistle,0,semiestruturado,jsFSTMergeV2
+Zepto.js,0,semiestruturado,jsFSTMergeV2

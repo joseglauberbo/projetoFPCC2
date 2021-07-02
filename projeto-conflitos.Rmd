@@ -1,0 +1,167 @@
+---
+title: "Projeto - replicação"
+output:
+    html_document:
+    df_print: paged
+theme: sandstone
+---
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+
+library(boot)
+library(broom)
+
+knitr::opts_chunk$set(tidy = FALSE,
+                      fig.width = 6,
+                      fig.height = 5)
+
+```
+
+```{r read}
+falsosPositivosAdicionados3AlgoritmosConflitos = read_csv(here::here("~/labs-fpcc2/projeto/falsosPositivosAdicionados3AlgoritmosConflitos.csv"), 
+                 col_types = "cdcc")
+
+```
+
+```{r}
+plot_ics = function(d) {
+    d %>%
+        ggplot(aes(
+            ymin = low,
+            y = mid,
+            ymax = high,
+            x = metodo
+        )) +
+        geom_linerange() +
+        geom_point(color = "coral", size = 3) +
+        scale_y_continuous(limits = c(-2, 2)) +
+        labs(x = "", y = "Intervalos de confiança") +
+        coord_flip()
+}
+```
+
+```{r}
+comparacao = falsosPositivosAdicionados3AlgoritmosConflitos %>% 
+    filter(algoritmo %in% c("kdiff3", "jsFSTMergeV1"))
+
+theta <- function(d, i) {
+    agrupado = d %>% 
+        slice(i) %>% 
+        group_by(algoritmo) %>% 
+        summarise(totalFalsosPositivos = mean(falsosPositivos))
+    k = agrupado %>% filter(algoritmo == "kdiff3") %>% pull(totalFalsosPositivos)
+    j = agrupado %>% filter(algoritmo == "jsFSTMergeV1") %>% pull(totalFalsosPositivos)
+    k - j
+}
+
+theta(comparacao, i = 1:NROW(comparacao))
+```
+
+```{r}
+ci <- boot(data = comparacao,
+           statistic = theta,
+           R = 2000) %>%
+    tidy(conf.level = .95,
+         conf.method = "bca",
+         conf.int = TRUE)
+ci
+```
+
+```{r}
+comparacao2 = falsosPositivosAdicionados3AlgoritmosConflitos %>% 
+    filter(algoritmo %in% c("kdiff3", "jsFSTMergeV2"))
+
+theta <- function(d, i) {
+    agrupado = d %>% 
+        slice(i) %>% 
+        group_by(algoritmo) %>% 
+        summarise(totalFalsosPositivos = mean(falsosPositivos))
+    k = agrupado %>% filter(algoritmo == "kdiff3") %>% pull(totalFalsosPositivos)
+    j = agrupado %>% filter(algoritmo == "jsFSTMergeV2") %>% pull(totalFalsosPositivos)
+    k - j
+}
+
+theta(comparacao2, i = 1:NROW(comparacao2))
+```
+
+```{r}
+ci2 <- boot(data = comparacao2,
+           statistic = theta,
+           R = 2000) %>%
+    tidy(conf.level = .95,
+         conf.method = "bca",
+         conf.int = TRUE)
+ci2
+```
+
+```{r}
+comparacao3 = falsosPositivosAdicionados3AlgoritmosConflitos %>% 
+    filter(algoritmo %in% c("jsFSTMergeV1", "jsFSTMergeV2"))
+
+theta <- function(d, i) {
+    agrupado = d %>% 
+        slice(i) %>% 
+        group_by(algoritmo) %>% 
+        summarise(totalFalsosPositivos = mean(falsosPositivos))
+    k = agrupado %>% filter(algoritmo == "jsFSTMergeV1") %>% pull(totalFalsosPositivos)
+    j = agrupado %>% filter(algoritmo == "jsFSTMergeV2") %>% pull(totalFalsosPositivos)
+    k - j
+}
+
+theta(comparacao3, i = 1:NROW(comparacao3))
+```
+```{r}
+ci3 <- boot(data = comparacao3,
+           statistic = theta,
+           R = 2000) %>%
+    tidy(conf.level = .95,
+         conf.method = "bca",
+         conf.int = TRUE)
+ci3
+```
+
+
+```{r}
+tribble(
+    ~metodo, ~low, ~mid, ~high, 
+    "C1 (kdiff3 - jsFSTMerge v1)", 0.08834375, 0.66, 1.455046, 
+    "C2 (kdiff3 - jsFSTMerge v2)", 0.5312542, 1.02, 1.886327,
+    "C3 (jsFSTMerge v1 - jsFSTMerge v2)", 0.1119546, 0.36, 0.731562) %>%
+    plot_ics()
+```
+```{r}
+falsosPositivosAdicionados3AlgoritmosConflitos %>%
+  ggplot(aes(y = falsosPositivos, x = algoritmo, fill=algoritmo)) + 
+  geom_boxplot() + 
+  theme(legend.position = "none") +
+  ggtitle("Quantidade de falsos positivos adicionados em relação à conflitos") +
+  labs(y = "Falsos positivos", x = "Algoritmo")
+```
+
+```{r}
+falsosPositivosAdicionados3AlgoritmosConflitos %>%
+  ggplot(aes(y = falsosPositivos, x = cenario, fill=cenario)) + 
+  geom_boxplot() + 
+  theme(legend.position = "none") +
+  ggtitle("Quantidade de falsos positivos adicionados em relação à conflitos") +
+  labs(y = "Falsos positivos", x = "Tipo de merge")
+```
+
+```{r read}
+dados %>%
+    ggplot(aes(y = verb_SAT, x = comp_GPA)) +
+    geom_point(alpha=.7, color = "black")+
+    geom_smooth(method = "lm", color="purple") +
+    theme_minimal() +
+    ggtitle("Correlação entre as notas de expressão verbal e de computação") +
+    labs(y = "Notas de expressão verbal", x = "Notas de computação") 
+
+dados %>% 
+  summarise(
+    pearson = cor(verb_SAT,comp_GPA, method = "pearson"), 
+    spearman = cor(verb_SAT,comp_GPA, method = "spearman")
+  )
+``` 
